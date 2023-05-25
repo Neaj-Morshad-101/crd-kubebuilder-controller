@@ -1,0 +1,31 @@
+# permissions for end users to edit klusters.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: kluster-editor-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: crd-kubebuilder-controller
+    app.kubernetes.io/part-of: crd-kubebuilder-controller
+    app.kubernetes.io/managed-by: kustomize
+  name: kluster-editor-role
+rules:
+- apiGroups:
+  - neajmorshad.dev.neajmorshad.com
+  resources:
+  - klusters
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - neajmorshad.dev.neajmorshad.com
+  resources:
+  - klusters/status
+  verbs:
+  - get

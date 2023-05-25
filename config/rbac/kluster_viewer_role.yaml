@@ -1,0 +1,27 @@
+# permissions for end users to view klusters.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: kluster-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: crd-kubebuilder-controller
+    app.kubernetes.io/part-of: crd-kubebuilder-controller
+    app.kubernetes.io/managed-by: kustomize
+  name: kluster-viewer-role
+rules:
+- apiGroups:
+  - neajmorshad.dev.neajmorshad.com
+  resources:
+  - klusters
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - neajmorshad.dev.neajmorshad.com
+  resources:
+  - klusters/status
+  verbs:
+  - get

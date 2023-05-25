@@ -1,0 +1,33 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: null
+  name: manager-role
+rules:
+- apiGroups:
+  - neajmorshad.dev.neajmorshad.com
+  resources:
+  - klusters
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - neajmorshad.dev.neajmorshad.com
+  resources:
+  - klusters/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - neajmorshad.dev.neajmorshad.com
+  resources:
+  - klusters/status
+  verbs:
+  - get
+  - patch
+  - update

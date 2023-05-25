@@ -1,0 +1,12 @@
+apiVersion: neajmorshad.dev.neajmorshad.com/v1beta1
+kind: Kluster
+metadata:
+  labels:
+    app.kubernetes.io/name: kluster
+    app.kubernetes.io/instance: kluster-sample
+    app.kubernetes.io/part-of: crd-kubebuilder-controller
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: crd-kubebuilder-controller
+  name: kluster-sample
+spec:
+  # TODO(user): Add fields here
