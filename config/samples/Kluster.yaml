@@ -7,14 +7,14 @@ metadata:
     app.kubernetes.io/part-of: crd-kubebuilder-controller
     app.kubernetes.io/managed-by: kustomize
     app.kubernetes.io/created-by: crd-kubebuilder-controller
-  name: kluster-sample-1
+  name: kluster-sample-2
 spec:
-  name: my-deployment-1
-  replicas: 3
+  name:
+  replicas: 2
   container:
     image: "pritam99/api-server:0.0.1"
     port: 8080
   service:
-    serviceName: "my-service"
+    serviceName: "my-service-2"
     serviceType: "ClusterIP"
     servicePort: 8080
