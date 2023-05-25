@@ -28,7 +28,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/log"
 	"time"
 
-	neajmorshaddevv1beta1 "github.com/Neaj-Morshad-101/crd-kubebuilder-controller/api/v1beta1"
+	v1beta1 "github.com/Neaj-Morshad-101/crd-kubebuilder-controller/api/v1beta1"
 )
 
 // KlusterReconciler reconciles a Kluster object
@@ -68,7 +68,7 @@ func (r *KlusterReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ct
 		Many client methods also take variadic options at the end.
 	*/
 
-	var kluster v1alpha1.Kluster
+	var kluster v1beta1.Kluster
 
 	if err := r.Get(ctx, req.NamespacedName, &kluster); err != nil {
 		fmt.Println(err, "unable to fetch kluster")
@@ -82,12 +82,8 @@ func (r *KlusterReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ct
 
 	// deploymentObject carry the all data of deployment in specific namespace and name
 	var deploymentObject appsv1.Deployment
-	deploymentName := kluster.Name + "-" + kluster.Spec.Name
+	deploymentName := "deployment-" + kluster.Name + "-" + kluster.Spec.Name
 	serviceName := "service-" + kluster.Name + "-" + kluster.Spec.Name
-	if kluster.Spec.Name == "" {
-		deploymentName = kluster.Name + "-missing"
-		serviceName = serviceName + "missing"
-	}
 
 	objectKey := client.ObjectKey{
 		Namespace: req.Namespace,
@@ -144,10 +140,10 @@ func (r *KlusterReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ct
 			return ctrl.Result{}, err
 		}
 	} else {
-		if kluster.Spec.Replicas != nil && *kluster.Spec.Replicas != kluster.Status.AvilableReplicas {
-			fmt.Println(*kluster.Spec.Replicas, kluster.Status.AvilableReplicas)
-			fmt.Printf("Is it problem?\nService replica missmatch...")
-			kluster.Status.AvilableReplicas = *kluster.Spec.Replicas
+		if kluster.Spec.Replicas != nil && *kluster.Spec.Replicas != kluster.Status.AvailableReplicas {
+			fmt.Println(*kluster.Spec.Replicas, kluster.Status.AvailableReplicas)
+			fmt.Printf("Is it problem? Service replica missmatch...")
+			kluster.Status.AvailableReplicas = *kluster.Spec.Replicas
 			if err := r.Status().Update(ctx, &kluster); err != nil {
 				fmt.Printf("error updating service %s\n", err)
 				return ctrl.Result{}, err
@@ -165,7 +161,7 @@ func (r *KlusterReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ct
 // SetupWithManager sets up the controller with the Manager.
 func (r *KlusterReconciler) SetupWithManager(mgr ctrl.Manager) error {
 	return ctrl.NewControllerManagedBy(mgr).
-		For(&neajmorshaddevv1beta1.Kluster{}).
+		For(&v1beta1.Kluster{}).
 		Owns(&appsv1.Deployment{}).
 		Owns(&corev1.Service{}).
 		Complete(r)
