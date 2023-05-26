@@ -12,7 +12,7 @@ spec:
   name: my-deployment-1
   replicas: 3
   container:
-    image: "pritam99/api-server:0.0.1"
+    image: "neajmorshad/http-api-server:0.0.1"
     port: 8080
   service:
     serviceName: "my-service"
