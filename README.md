@@ -1,7 +1,7 @@
 # crd-kubebuilder-controller
 This KubeBuilder Controller is created to manage a Custom Resource (Kluster)
 ## Learning: Writing controller using kubebuilder.
-This controller is base on a sample controller I implemented before https://github.com/Neaj-Morshad-101/crd-controller
+This controller is base on a sample controller I implemented before: `https://github.com/Neaj-Morshad-101/crd-controller`
 
 ## Description
 // TODO(user): An in-depth paragraph about your project and overview of use
