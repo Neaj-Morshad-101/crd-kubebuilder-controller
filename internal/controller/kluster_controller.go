@@ -27,6 +27,7 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/log"
+	"time"
 )
 
 // KlusterReconciler reconciles a Kluster object
@@ -151,7 +152,11 @@ func (r *KlusterReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ct
 		fmt.Println("replica count updated")
 	}
 
-	return ctrl.Result{}, nil
+	//may need to modify this
+	return ctrl.Result{
+		Requeue:      true,
+		RequeueAfter: 1 * time.Minute,
+	}, nil
 }
 
 // SetupWithManager sets up the controller with the Manager.
