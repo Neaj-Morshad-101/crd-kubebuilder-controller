@@ -140,16 +140,17 @@ func (r *KlusterReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ct
 			return ctrl.Result{}, err
 		}
 	} else {
-		if kluster.Spec.Replicas != nil && *kluster.Spec.Replicas != kluster.Status.AvailableReplicas {
-			fmt.Println(*kluster.Spec.Replicas, kluster.Status.AvailableReplicas)
-			fmt.Printf("Is it problem? Service replica missmatch...")
-			kluster.Status.AvailableReplicas = *kluster.Spec.Replicas
-			if err := r.Status().Update(ctx, &kluster); err != nil {
-				fmt.Printf("error updating service %s\n", err)
-				return ctrl.Result{}, err
-			}
-			fmt.Println("service updated")
+		fmt.Println("Service exists")
+	}
+
+	if kluster.Spec.Replicas != nil && *kluster.Spec.Replicas != kluster.Status.AvailableReplicas {
+		fmt.Println(*kluster.Spec.Replicas, kluster.Status.AvailableReplicas)
+		kluster.Status.AvailableReplicas = *kluster.Spec.Replicas
+		if err := r.Status().Update(ctx, &kluster); err != nil {
+			fmt.Printf("error while updating the replica count %s\n", err)
+			return ctrl.Result{}, err
 		}
+		fmt.Println("replica count updated")
 	}
 
 	return ctrl.Result{
