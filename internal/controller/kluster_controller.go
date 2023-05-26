@@ -19,6 +19,7 @@ package controller
 import (
 	"context"
 	"fmt"
+	v1beta1 "github.com/Neaj-Morshad-101/crd-kubebuilder-controller/api/v1beta1"
 	appsv1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/errors"
@@ -26,9 +27,6 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/log"
-	"time"
-
-	v1beta1 "github.com/Neaj-Morshad-101/crd-kubebuilder-controller/api/v1beta1"
 )
 
 // KlusterReconciler reconciles a Kluster object
@@ -153,10 +151,7 @@ func (r *KlusterReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ct
 		fmt.Println("replica count updated")
 	}
 
-	return ctrl.Result{
-		Requeue:      true,
-		RequeueAfter: 1 * time.Minute,
-	}, nil
+	return ctrl.Result{}, nil
 }
 
 // SetupWithManager sets up the controller with the Manager.
