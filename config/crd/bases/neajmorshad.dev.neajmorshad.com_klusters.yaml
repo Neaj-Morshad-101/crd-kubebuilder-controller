@@ -48,6 +48,22 @@ spec:
               replicas:
                 format: int32
                 type: integer
+              service:
+                properties:
+                  serviceName:
+                    type: string
+                  serviceNodePort:
+                    format: int32
+                    type: integer
+                  servicePort:
+                    format: int32
+                    type: integer
+                  serviceType:
+                    type: string
+                required:
+                - servicePort
+                - serviceType
+                type: object
             required:
             - container
             - replicas

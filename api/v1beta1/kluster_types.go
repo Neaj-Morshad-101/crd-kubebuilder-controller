@@ -38,11 +38,21 @@ type ContainerSpec struct {
 	Port  int32  `json:"port,omitempty"`
 }
 
+type ServiceSpec struct {
+	//+optional
+	ServiceName string `json:"serviceName,omitempty"`
+	ServiceType string `json:"serviceType"`
+	//+optional
+	ServiceNodePort int32 `json:"serviceNodePort,omitempty"`
+	ServicePort     int32 `json:"servicePort"`
+}
+
 // KlusterSpec defines the desired state of KlusterCRD
 type KlusterSpec struct {
 	Name      string        `json:"name,omitempty"`
 	Replicas  *int32        `json:"replicas"`
 	Container ContainerSpec `json:"container,container"`
+	Service   ServiceSpec   `json:"service,omitempty"`
 }
 
 //// KlusterStatus defines the observed state of Kluster

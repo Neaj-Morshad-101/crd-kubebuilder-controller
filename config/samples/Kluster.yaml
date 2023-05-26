@@ -9,7 +9,7 @@ metadata:
     app.kubernetes.io/created-by: crd-kubebuilder-controller
   name: kluster-sample-2
 spec:
-  name:
+  name: my-deployment-2
   replicas: 2
   container:
     image: "pritam99/api-server:0.0.1"
