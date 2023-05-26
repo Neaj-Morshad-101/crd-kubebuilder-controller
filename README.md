@@ -1,7 +1,7 @@
 # crd-kubebuilder-controller
 This KubeBuilder Controller is created to manage a Custom Resource (Kluster)
-
-// TODO(user): Add simple overview of use/purpose
+## Learning: Writing controller using kubebuilder.
+This controller is base on a sample controller I implemented before https://github.com/Neaj-Morshad-101/crd-controller
 
 ## Description
 // TODO(user): An in-depth paragraph about your project and overview of use
@@ -11,10 +11,11 @@ You’ll need a Kubernetes cluster to run against. You can use [KIND](https://si
 **Note:** Your controller will automatically use the current context in your kubeconfig file (i.e. whatever cluster `kubectl cluster-info` shows).
 
 ### Running on the cluster
-1. Install Instances of Custom Resources:
 
+1. Apply CRD and Install Instances of Custom Resources:
+   - kubectl apply -f config/crd/bases/neajmorshad.dev.neajmorshad.com_klusters.yaml
 ```sh
-kubectl apply -f config/samples/
+kubectl apply -f config/samples/Kluster.yaml
 ```
 
 2. Build and push your image to the location specified by `IMG`:
