@@ -13,8 +13,8 @@ You’ll need a Kubernetes cluster to run against. You can use [KIND](https://si
 ### Running on the cluster
 
 1. Apply CRD and Install Instances of Custom Resources:
-   - kubectl apply -f config/crd/bases/neajmorshad.dev.neajmorshad.com_klusters.yaml
 ```sh
+kubectl apply -f config/crd/bases/neajmorshad.dev.neajmorshad.com_klusters.yaml
 kubectl apply -f config/samples/Kluster.yaml
 ```
 
