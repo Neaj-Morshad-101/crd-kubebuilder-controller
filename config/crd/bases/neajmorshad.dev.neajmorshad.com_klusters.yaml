@@ -43,8 +43,6 @@ spec:
                     format: int32
                     type: integer
                 type: object
-              name:
-                type: string
               replicas:
                 format: int32
                 type: integer

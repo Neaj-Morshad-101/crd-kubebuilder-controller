@@ -80,8 +80,8 @@ func (r *KlusterReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ct
 
 	// deploymentObject carry the all data of deployment in specific namespace and name
 	var deploymentObject appsv1.Deployment
-	deploymentName := "deployment-" + kluster.Name + "-" + kluster.Spec.Name
-	serviceName := "service-" + kluster.Name + "-" + kluster.Spec.Name
+	deploymentName := "deployment-" + kluster.Name
+	serviceName := "service-" + kluster.Name
 
 	objectKey := client.ObjectKey{
 		Namespace: req.Namespace,

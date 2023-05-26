@@ -49,7 +49,6 @@ type ServiceSpec struct {
 
 // KlusterSpec defines the desired state of KlusterCRD
 type KlusterSpec struct {
-	Name      string        `json:"name,omitempty"`
 	Replicas  *int32        `json:"replicas"`
 	Container ContainerSpec `json:"container,container"`
 	Service   ServiceSpec   `json:"service,omitempty"`

@@ -3,7 +3,6 @@ kind: Kluster
 metadata:
   name: kluster-sample-1
 spec:
-  name: my-deployment-1
   replicas: 3
   container:
     image: "neajmorshad/http-api-server:0.0.2"
